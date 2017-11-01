@@ -5,9 +5,8 @@ FROM centos:6.8
 MAINTAINER lvyalin lvyalin.yl@gmail.com
 
 # php build
-RUN cd /usr/src && \
- yum -y install vim wget pcre-devel libxml2-devel curl-devel libpng-devel gd-devel autoconf zlib-devel gcc make openssl-devel unzip crontabs
-RUN curl http://php.net/distributions/php-7.1.7.tar.gz -o php-7.1.7.tar.gz && \
+RUN cd /usr/src && yum -y install vim wget pcre-devel libxml2-devel curl-devel libpng-devel gd-devel autoconf zlib-devel gcc make openssl-devel unzip crontabs
+RUN cd /usr/src && curl http://php.net/distributions/php-7.1.7.tar.gz -o php-7.1.7.tar.gz && \
  tar xvf php-7.1.7.tar.gz && cd php-7.1.7 && \
  ./configure --prefix=/usr/local/php --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-jpeg-dir=/usr/lib64/ --with-iconv --with-openssl --with-curl --enable-pcntl --with-zlib --enable-bcmath --enable-json --enable-fpm --enable-mbstring --enable-soap --enable-opcache --enable-zip && \
  make -j4 && make install && yum clean all && cd /usr/src && rm -rf php-7.1.7*
